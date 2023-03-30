@@ -1,0 +1,13 @@
+<h2>Update User</h2>
+<user-form
+  [user]="user$ | async"
+  [roleList]="roles$ | async"
+  (saved)="userSaved($event)"
+></user-form>
+
+<!-- <h2>New User</h2>
+<user-form
+  [user]="newUser2$ | async"
+  [roleList]="roles$ | async"
+  (saved)="userSaved($event)"
+></user-form> -->

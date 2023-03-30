@@ -1,0 +1,47 @@
+<form [formGroup]="form">
+  <h2>User</h2>
+  <span>
+    FirstName:
+    <input type="text" formControlName="firstName" />
+  </span>
+
+  <span *ngIf="!id">
+    Password:
+    <input type="text" formControlName="password" />
+  </span>
+
+  <div>
+    <h4>Permissions</h4>
+    <ul>
+      <li *ngFor="let permission of form.controls.permissions.controls">
+        <input type="text" [formControl]="permission" />
+      </li>
+    </ul>
+    <button (click)="addPermission()">Add Permission</button>
+  </div>
+
+  <div>
+    <h4>Roles</h4>
+    <ul>
+      <li *ngFor="let role of roleList">{{ role.id }} - {{ role.name }}</li>
+    </ul>
+
+    <!-- <ul>
+      <li *ngFor="let roleGroup of form.controls.roles.controls">
+        <input type="text" [formControl]="roleGroup.controls.name" />
+      </li>
+    </ul> -->
+
+    <select multiple [formControl]="form.controls.roles">
+      <option *ngFor="let role of roleList" [ngValue]="role" selected="true">
+        {{ role.name }}
+      </option>
+    </select>
+
+    <button (click)="addRole()">Add Role</button>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <button (click)="save()" [disabled]="form.pristine">Save Changes</button>
+  </div>
+</form>
